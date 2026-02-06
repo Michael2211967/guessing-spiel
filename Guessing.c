@@ -32,7 +32,7 @@ int main()
     printf("Geben Sie bitte die Obergrenze ein: ");
     scanf("%d", &upperBound);
     srand(time(NULL));
-    secretNumber = rand() % upperBound + lowerBound;
+    secretNumber = (rand() % (upperBound - lowerBound + 1)) + lowerBound;
     timenow = timestamp();
     printf("\nEs wurde um %s eine Zufallszahl zwischen %d und %d erzeugt.\n",timenow, lowerBound, upperBound);
     printf("Deine Aufgabe ist es zu erraten, welche Zahl es ist.\n");
