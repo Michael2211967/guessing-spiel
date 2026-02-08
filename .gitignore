@@ -1,0 +1,13 @@
+# Executables
+*.exe
+guessing
+
+# Object files
+*.o
+mod/*.o
+
+# OS-spezifische Dateien
+Thumbs.db
+.DS_Store
+time.c
+timeapi.c
