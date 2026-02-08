@@ -6,31 +6,20 @@
 #include<stdlib.h>
 #include<string.h>
 #include<time.h>
-
-int lowerBound;
-int upperBound;
-int secretNumber;
-int guess;
-int count;
-
-char* timestamp()
-{
-    struct tm* tp;
-    time_t t;
-    char* buffer = (char *) malloc(sizeof(char) * 9);
-    time(&t);
-    tp = localtime(&t);
-    strftime(buffer, 9, "%H:%M:%S", tp);
-    return buffer;
-}
+#include"mod/tools.h"
 
 int main()
 {
+    int lowerBound;
+    int upperBound;
+    int secretNumber;
+    int guess;
+    int count;
     char* timenow;
-    printf("Geben Sie bitte die Untergrenze ein: ");
-    scanf("%d", &lowerBound);
-    printf("Geben Sie bitte die Obergrenze ein: ");
-    scanf("%d", &upperBound);
+    char prompt[80];
+
+    lowerBound = getSafeInt("Geben Sie bitte die Untergrenze ein: ");
+    upperBound = getSafeInt("Geben Sie bitte die Obergrenze ein: ");
     srand(time(NULL));
     secretNumber = (rand() % (upperBound - lowerBound + 1)) + lowerBound;
     timenow = timestamp();
@@ -42,8 +31,9 @@ int main()
     do
     {
         timenow = timestamp();
-        printf("[%s]: Gib eine Zahl zwischen %d und %d ein: ", timenow, lowerBound, upperBound);
-        scanf("%d", &guess);
+        sprintf(prompt, "[%s]: Gib eine Zahl zwischen %d und %d ein: ", timenow, lowerBound, upperBound);
+        guess = getSafeInt(prompt);
+    
         free(timenow);
         if(guess > secretNumber)
         {
