@@ -18,8 +18,13 @@ int main()
     char* timenow;
     char prompt[80];
 
+    do {
     lowerBound = getSafeInt("Geben Sie bitte die Untergrenze ein: ");
     upperBound = getSafeInt("Geben Sie bitte die Obergrenze ein: ");
+    if(lowerBound >= upperBound)
+        printf("\nDie Untergrenze kann nicht größer als die Obergrenze sein!\n");
+    }
+    while(lowerBound >= upperBound);
     srand(time(NULL));
     secretNumber = (rand() % (upperBound - lowerBound + 1)) + lowerBound;
     timenow = timestamp();
